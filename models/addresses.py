@@ -1,6 +1,4 @@
 from sqlalchemy import Integer, String, Column, ForeignKey
-from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import relationship, Mapped
 from utils.database_orm import Base
 
 
@@ -12,4 +10,5 @@ class Address(Base):
     city = Column(String)
     street = Column(String)
     house = Column(String)
+    floor = Column(String, nullable=True)
     apartment = Column(String, nullable=True)

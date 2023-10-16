@@ -1,0 +1,13 @@
+from sqlalchemy import Integer, Column, String, Float, ForeignKey, DateTime
+from utils.database_orm import Base
+
+
+class Order(Base):
+    __tablename__ = 'orders'
+
+    order_id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.user_id'))
+    promo_id = Column(Integer, ForeignKey('Promo_codes.promo_id'))
+    total_cost = Column(Float)
+    order_date = Column(DateTime)
+    order_status = Column(String)

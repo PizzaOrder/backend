@@ -1,5 +1,6 @@
 from sqlalchemy import Integer, String, Column
 from sqlalchemy.ext.hybrid import hybrid_property
+
 from utils.database_orm import Base
 
 
@@ -9,8 +10,7 @@ class User(Base):
     user_id = Column(Integer, primary_key=True)
     first_name = Column(String)
     last_name = Column(String, nullable=True)
-    email = Column(String)
-    password = Column(String)
+    telephone = Column(Integer)
 
     @hybrid_property
     def fullname(self):
