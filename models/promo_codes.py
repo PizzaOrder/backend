@@ -1,9 +1,9 @@
-from sqlalchemy import Integer, String, Column, DateTime
+from sqlalchemy import Column, DateTime, Integer, String
 from utils.database_orm import Base
 
 
 class PromoCode(Base):
-    __tablename__ = 'promo_codes'
+    __tablename__ = "promo_codes"
 
     promo_id = Column(Integer, primary_key=True)
     code = Column(String, unique=True)
