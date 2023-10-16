@@ -7,7 +7,7 @@ class Order(Base):
 
     order_id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.user_id"))
-    promo_id = Column(Integer, ForeignKey("Promo_codes.promo_id"))
+    promo_id = Column(Integer, ForeignKey("promo_codes.promo_id"))
     total_cost = Column(Float)
     order_date = Column(DateTime)
     order_status = Column(String)

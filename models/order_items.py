@@ -7,5 +7,5 @@ class OrderItem(Base):
 
     item_id = Column(Integer, primary_key=True)
     order_id = Column(Integer, ForeignKey("orders.order_id"))
-    pizza_id = Column(Integer, ForeignKey("pizzas.pizza_id"))
+    pizza_id = Column(Integer, ForeignKey("default_pizzas.pizza_id"))
     quantity = Column(Integer)
