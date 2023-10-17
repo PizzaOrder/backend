@@ -1,7 +1,10 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
+from routers import pizza_router
+from utils.get_db import get_db
 
 app = FastAPI()
+app.include_router(pizza_router.router)
 
 
 @app.get("/")
