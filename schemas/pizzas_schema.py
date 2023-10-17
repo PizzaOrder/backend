@@ -2,6 +2,9 @@ from pydantic import BaseModel
 
 
 class PizzaBase(BaseModel):
-    id: int
+    pizza_id: int
     name: str
     price: float
+
+    class Config:
+        orm_mode = True
