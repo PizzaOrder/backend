@@ -8,13 +8,25 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = "^0.103.2"
-uvicorn = {extras = ["standard"], version = "^0.23.2"}
+uvicorn = { extras = ["standard"], version = "^0.23.2" }
 sqlalchemy = "^2.0.22"
 psycopg2 = "^2.9.9"
-mypy = "^1.6.0"
-pylint = "^3.0.1"
+pydantic = "^2.4.2"
 
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+bandit = "^1.7.5"
+isort = "^5.12.0"
+pre-commit = "^3.5.0"
+git-limiter = "^0.1.1"
+conventional-pre-commit = "^2.4.0"
+mypy = "^1.6.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "hug"
+src_paths = ["isort", "test"]
