@@ -1,5 +1,5 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
-from utils.database_orm import Base
+from core.models.base import Base
 
 
 class Address(Base):

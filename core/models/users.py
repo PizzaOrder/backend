@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.hybrid import hybrid_property
-from utils.database_orm import Base
+from core.models.base import Base
 
 
 class User(Base):
