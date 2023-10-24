@@ -1,5 +1,5 @@
 from sqlalchemy import Column, DateTime, Integer, String
-from utils.database_orm import Base
+from core.models.base import Base
 
 
 class PromoCode(Base):
