@@ -211,22 +211,6 @@ testing = ["covdefaults (>=2.3)", "coverage (>=7.3)", "diff-cover (>=7.7)", "pyt
 typing = ["typing-extensions (>=4.7.1)"]
 
 [[package]]
-name = "git-limiter"
-version = "0.1.1"
-description = "Tool allowing to prevent commiting huge diffs"
-optional = false
-python-versions = ">=3.8,<4.0"
-files = [
-    {file = "git_limiter-0.1.1-py3-none-any.whl", hash = "sha256:aefbf633860f9387397383d63a327c50dd537c5f1e265640d65a071d72ef245f"},
-    {file = "git_limiter-0.1.1.tar.gz", hash = "sha256:90b76f84313990fb70c342d4e46681315955acfd6c08fbf72df87a8c6ac3c3a9"},
-]
-
-[package.dependencies]
-click = ">=8.1.3,<9.0.0"
-rich = ">=13.3.3,<14.0.0"
-tomli = ">=2.0.1,<3.0.0"
-
-[[package]]
 name = "gitdb"
 version = "4.0.11"
 description = "Git Object Database"
@@ -1157,17 +1141,6 @@ files = [
 pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 
 [[package]]
-name = "tomli"
-version = "2.0.1"
-description = "A lil' TOML parser"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
-    {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
-]
-
-[[package]]
 name = "typing-extensions"
 version = "4.8.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -1457,4 +1430,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "4321eb86ca5084a37008be687a5a8a5c1b99053feae2ae6877bcac5719651d63"
+content-hash = "e7cfb9b6f89ebb93d3d5aeac59c3058d4a36be9963167fbef90d7beb32507500"
