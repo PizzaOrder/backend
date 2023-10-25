@@ -15,5 +15,5 @@ class UserInDBBase(UserBase):
     id: int
 
 
-class UserInDB(UserInDBBase):
+class User(UserInDBBase):
     pass
