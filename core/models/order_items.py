@@ -6,6 +6,6 @@ class OrderItem(Base):
     __tablename__ = "order_items"
 
     id = Column(Integer, primary_key=True)
-    order_id = Column(Integer, ForeignKey("orders.order_id"))
-    pizza_id = Column(Integer, ForeignKey("pizzas.pizza_id"))
+    order_id = Column(Integer, ForeignKey("orders.id"))
+    pizza_id = Column(Integer, ForeignKey("pizzas.id"))
     quantity = Column(Integer)
