@@ -14,13 +14,14 @@ psycopg2 = "^2.9.9"
 pydantic = "^2.4.2"
 alembic = "^1.12.0"
 pydantic-settings = "^2.0.3"
+pydantic-extra-types = "^2.1.0"
+phonenumbers = "^8.13.23"
 
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.9.1"
 bandit = "^1.7.5"
 pre-commit = "^3.5.0"
-git-limiter = "^0.1.1"
 conventional-pre-commit = "^2.4.0"
 mypy = "^1.6.0"
 typos = "^1.16.20"

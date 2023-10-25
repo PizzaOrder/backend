@@ -1,4 +1,4 @@
-from models.pizzas import Pizza
+from core.models import Pizza
 from sqlalchemy.orm import Session
 
 
