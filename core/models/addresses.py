@@ -6,7 +6,7 @@ class Address(Base):
     __tablename__ = "addresses"
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.user_id"))
+    user_id = Column(Integer, ForeignKey("users.id"))
     city = Column(String)
     street = Column(String)
     house = Column(String)

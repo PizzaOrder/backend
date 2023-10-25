@@ -6,8 +6,8 @@ class Order(Base):
     __tablename__ = "orders"
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.user_id"))
-    promo_id = Column(Integer, ForeignKey("promo_codes.promo_id"))
+    user_id = Column(Integer, ForeignKey("users.id"))
+    promo_id = Column(Integer, ForeignKey("promo_codes.id"))
     total_cost = Column(Float)
     order_date = Column(DateTime)
     order_status = Column(String)
