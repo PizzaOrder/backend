@@ -17,5 +17,5 @@ class AddressInDBBase(BaseModel):
     id: int
 
 
-class Addresses(AddressInDBBase):
+class AddressesModel(AddressInDBBase):
     pass
