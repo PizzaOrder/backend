@@ -18,5 +18,5 @@ class OrderInDBBase(OrderBase):
     id: int
 
 
-class Order(OrderInDBBase):
+class OrderModel(OrderInDBBase):
     pass

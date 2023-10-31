@@ -17,5 +17,5 @@ class PromoCodeInDBBase(PromoCodeBase):
     id: int
 
 
-class PromoCode(PromoCodeInDBBase):
+class PromoCodeModel(PromoCodeInDBBase):
     pass

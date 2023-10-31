@@ -14,5 +14,5 @@ class OrderItemInDBBase(OrderItemBase):
     id: int
 
 
-class OrderItem(OrderItemInDBBase):
+class OrderItemModel(OrderItemInDBBase):
     pass

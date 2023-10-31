@@ -13,5 +13,5 @@ class PizzaInDBBase(PizzaBase):
     id: int
 
 
-class Pizza(PizzaInDBBase):
+class PizzaModel(PizzaInDBBase):
     pass
