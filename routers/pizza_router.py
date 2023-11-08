@@ -8,6 +8,6 @@ from utils.get_db import get_db
 router = APIRouter(prefix="/pizzas", tags=["pizza"])
 
 
-@router.get("", response_model=PizzaModel)
+@router.get("", response_model=list[PizzaModel])
 async def get_pizzas(db: Session = Depends(get_db)):
     return db.query(Pizza).all()
