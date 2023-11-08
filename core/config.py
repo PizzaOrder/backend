@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings
 
 
 class DBSettings(BaseModel):
-    url: str = "postgresql://admin@localhost:5432/PizzaOrder"
+    url: str = "postgresql+psycopg2://admin:root@localhost/PizzaOrder"
 
 
 class Settings(BaseSettings):

@@ -32,3 +32,6 @@ repos:
     hooks:
       - id: conventional-pre-commit
         stages: [ commit-msg ]
+
+
+#TODO https://python-poetry.org/docs/pre-commit-hooks/#arguments-2
