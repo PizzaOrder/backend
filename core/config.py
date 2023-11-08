@@ -1,27 +1,13 @@
-from pydantic import BaseModel, EmailStr
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import BaseModel
+from pydantic_settings import BaseSettings
 
 
 class DBSettings(BaseModel):
-    url: str
+    url: str = "postgresql+psycopg2://admin:root@localhost/PizzaOrder"
 
 
 class Settings(BaseSettings):
     db: DBSettings = DBSettings()
-    model_config = SettingsConfigDict(env_file="../.env")
-
-    POSTGRES_USER: str
-    POSTGRES_PASSWORD: str
-    POSTGRES_DB: str
-
-    PGADMIN_MAIL: EmailStr
-    PGADMIN_PW: str
-
-    def __init__(self):
-        super().__init__()
-        self.db.url = (
-            f"postgresql://{self.POSTGRES_USER}@localhost:5432/{self.POSTGRES_DB}"
-        )
 
 
 settings = Settings()
