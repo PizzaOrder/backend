@@ -34,3 +34,8 @@ build-backend = "poetry.core.masonry.api"
 [tool.isort]
 profile = "hug"
 src_paths = ["isort", "test"]
+
+[tool.typos]
+files.extend-exclude = [
+    "alembic/versions/*"
+]
