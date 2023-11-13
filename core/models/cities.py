@@ -1,9 +1,8 @@
 from sqlalchemy import Column, Integer, String
-
 from core.models.base import Base
 
 
-class Cities(Base):
+class City(Base):
     __tablename__ = "cities"
 
     id = Column(Integer, primary_key=True)
