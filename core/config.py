@@ -1,6 +1,7 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+# mypy: disable-error-code="call-arg"
 class Settings(BaseSettings):
     DB_USER: str
     DB_PASS: str
