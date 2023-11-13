@@ -1,8 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from core.config import settings
 
 # dialect+driver://username:password@host:port/database
-SQLALCHEMY_DATABASE_URL = "postgresql+psycopg2://admin:root@localhost:5432/PizzaOrder"
+SQLALCHEMY_DATABASE_URL = settings.database_dsn_psycopg2
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
