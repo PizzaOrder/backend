@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime, BigInteger, func
 from sqlalchemy.ext.hybrid import hybrid_property
 from core.models.base import Base
 
@@ -9,7 +9,8 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     first_name = Column(String)
     last_name = Column(String, nullable=True)
-    telephone = Column(Integer)
+    telephone = Column(BigInteger)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     @hybrid_property
     def fullname(self):
