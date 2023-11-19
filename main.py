@@ -1,10 +1,11 @@
 import uvicorn
 from fastapi import FastAPI
-from routers import pizza_router, cities_router
+from routers import pizza_router, cities_router, promo_code_router
 
 app = FastAPI()
 app.include_router(pizza_router.router)
 app.include_router(cities_router.router)
+app.include_router(promo_code_router.router)
 
 
 @app.get("/")
