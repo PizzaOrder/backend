@@ -1,3 +1,5 @@
+from sqlalchemy.orm import relationship
+
 from core.models.base import Base
 from sqlalchemy import Integer, String, ForeignKey, Column
 
@@ -9,3 +11,5 @@ class CafeLocation(Base):
     city_id = Column(Integer, ForeignKey("cities.id"))
     street = Column(String)
     house = Column(String)
+
+    city = relationship("City", back_populates="cafes")
