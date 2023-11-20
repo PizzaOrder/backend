@@ -9,7 +9,7 @@ from utils.get_db import get_db
 router = APIRouter(prefix="/promo_codes", tags=["promo code"])
 
 
-@router.get("validate/{promo_code}")
+@router.get("/validate/{promo_code}")
 def validate_promo_code(
     promo_code: Annotated[str, Path()], db: Session = Depends(get_db)
 ):
