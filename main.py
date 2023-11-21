@@ -6,6 +6,7 @@ from routers import (
     cities_router,
     promo_code_router,
     cafe_locations_router,
+    users_router,
 )
 
 app = FastAPI()
@@ -13,10 +14,11 @@ app.include_router(pizza_router.router)
 app.include_router(cities_router.router)
 app.include_router(promo_code_router.router)
 app.include_router(cafe_locations_router.router)
+app.include_router(users_router.router)
 
 
 @app.get("/")
-async def root():
+def root():
     return {"message": "Hello World"}
 
 
