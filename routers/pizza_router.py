@@ -9,5 +9,5 @@ router = APIRouter(prefix="/pizzas", tags=["pizza"])
 
 
 @router.get("", response_model=list[PizzaModel])
-async def get_pizzas(db: Session = Depends(get_db)):
+def get_pizzas(db: Session = Depends(get_db)):
     return get_all_pizzas(db)

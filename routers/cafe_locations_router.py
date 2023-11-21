@@ -8,5 +8,5 @@ router = APIRouter(prefix="/cafes", tags=["cafe"])
 
 
 @router.get("/")
-async def get_cities(db: Session = Depends(get_db)):
+def get_cities(db: Session = Depends(get_db)):
     return get_cafe_locations(db)
