@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel
 from pydantic_extra_types.phone_numbers import PhoneNumber
 
@@ -13,6 +15,7 @@ class UserBase(BaseModel):
 
 class UserInDBBase(UserBase):
     id: int
+    created_at: datetime
 
 
 class UserModel(UserInDBBase):
