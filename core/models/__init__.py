@@ -8,6 +8,7 @@ __all__ = [
     "PromoCode",
     "UserAddress",
     "User",
+    "VerificationCode",
 ]
 from .addresses import Address
 from .cafe_locations import CafeLocation
@@ -16,5 +17,6 @@ from .orders import Order
 from .pizzas import Pizza
 from .promo_codes import PromoCode
 from .users import User
+from .verification_codes import VerificationCode
 from .cities import City
 from .user_addresses import UserAddress

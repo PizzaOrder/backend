@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime, func
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import relationship
+
 from core.models.base import Base
 
 
@@ -11,6 +13,8 @@ class User(Base):
     last_name = Column(String, nullable=True)
     telephone = Column(String)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    verification_code = relationship("VerificationCode", back_populates="user")
 
     @hybrid_property
     def fullname(self):
