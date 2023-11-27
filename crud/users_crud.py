@@ -13,4 +13,4 @@ def create_user(user_data: UserBase, db: Session):
 
 
 def check_user_in_db(user_data: UserCredentials, db: Session):
-    return db.query(User).filter(User.email == user_data.email).one()
+    return db.query(User).filter_by(email=user_data.email).first()
