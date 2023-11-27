@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 from core.models import User
-from schemas.users_schema import UserBase
+from schemas.users_schema import UserBase, UserCredentials
 
 
 def create_user(user_data: UserBase, db: Session):
@@ -10,3 +10,7 @@ def create_user(user_data: UserBase, db: Session):
     db.commit()
     db.refresh(user)
     return user
+
+
+def check_user_in_db(user_data: UserCredentials, db: Session):
+    return db.query(User).filter(User.email == user_data.email).one()
