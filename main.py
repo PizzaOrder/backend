@@ -7,6 +7,7 @@ from routers import (
     promo_code_router,
     cafe_locations_router,
     users_router,
+    auth_router,
 )
 
 app = FastAPI()
@@ -15,6 +16,7 @@ app.include_router(cities_router.router)
 app.include_router(promo_code_router.router)
 app.include_router(cafe_locations_router.router)
 app.include_router(users_router.router)
+app.include_router(auth_router.router)
 
 
 @app.get("/")

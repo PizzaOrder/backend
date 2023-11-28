@@ -15,6 +15,9 @@ class Settings(BaseSettings):
 
     TOTP_SECRET: str
 
+    SECRET_KEY_JWT: str
+    ALGORITHM: str
+
     @property
     def database_dsn_psycopg2(self):
         return f"postgresql+psycopg2://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
