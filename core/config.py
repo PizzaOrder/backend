@@ -13,6 +13,8 @@ class Settings(BaseSettings):
     SENDER_PASSWORD: str
     RECIPIENT_EMAIL: str
 
+    TOTP_SECRET: str
+
     @property
     def database_dsn_psycopg2(self):
         return f"postgresql+psycopg2://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"

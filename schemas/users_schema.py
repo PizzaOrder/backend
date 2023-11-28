@@ -1,7 +1,15 @@
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from pydantic_extra_types.phone_numbers import PhoneNumber
+
+
+class UserCredentials(BaseModel):
+    email: EmailStr
+
+
+class UserCredentialsWithCode(UserCredentials):
+    verification_code: int
 
 
 class UserBase(BaseModel):

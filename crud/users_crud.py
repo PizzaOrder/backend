@@ -1,7 +1,8 @@
+from pydantic import EmailStr
 from sqlalchemy.orm import Session
 
 from core.models import User
-from schemas.users_schema import UserBase, UserCredentials
+from schemas.users_schema import UserBase
 
 
 def create_user(user_data: UserBase, db: Session):
@@ -12,5 +13,5 @@ def create_user(user_data: UserBase, db: Session):
     return user
 
 
-def check_user_in_db(user_data: UserCredentials, db: Session):
-    return db.query(User).filter_by(email=user_data.email).first()
+def get_user_in_db(user_mail: EmailStr, db: Session):
+    return db.query(User).filter_by(email=user_mail).first()

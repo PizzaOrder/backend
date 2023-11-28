@@ -11,4 +11,4 @@ def generate_totp(secret: str) -> int:
         digits=6,
         interval=1800,
     )
-    return totp.now()
+    return int(totp.now())
