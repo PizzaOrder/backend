@@ -1,7 +1,7 @@
 repos:
   # Using this mirror lets us use mypyc-compiled black, which is about 2x faster
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 23.9.1
+    rev: 23.11.0
     hooks:
       - id: black
         # It is recommended to specify the latest version of Python
@@ -12,13 +12,13 @@ repos:
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.1.1
+    rev: v0.1.6
     hooks:
       - id: ruff
         args: [ --fix, --exit-non-zero-on-fix ]
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.16.20
+    rev: v1.16.23
     hooks:
       - id: typos
 
@@ -28,7 +28,7 @@ repos:
       - id: bandit
 
   - repo: https://github.com/compilerla/conventional-pre-commit
-    rev: 4efc2bd
+    rev: v3.0.0
     hooks:
       - id: conventional-pre-commit
         stages: [ commit-msg ]
