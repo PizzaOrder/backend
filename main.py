@@ -2,12 +2,12 @@ import uvicorn
 from fastapi import FastAPI
 
 from routers import (
-    pizza_router,
-    cities_router,
-    promo_code_router,
-    cafe_locations_router,
-    users_router,
     auth_router,
+    cafe_locations_router,
+    cities_router,
+    pizza_router,
+    promo_code_router,
+    users_router,
 )
 
 app = FastAPI()

@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session, selectinload
+
 from core.models.cafe_locations import CafeLocation
 
 

@@ -1,7 +1,7 @@
+from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from core.models.base import Base
-from sqlalchemy import Integer, String, ForeignKey, Column
 
 
 class CafeLocation(Base):

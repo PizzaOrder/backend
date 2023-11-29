@@ -1,5 +1,6 @@
+from sqlalchemy import Column, ForeignKey, Integer
+
 from core.models.base import Base
-from sqlalchemy import Integer, Column, ForeignKey
 
 
 class UserAddress(Base):

@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, Path
 from sqlalchemy.orm import Session
 
-from crud.promo_code_crud import promo_code_exists, get_all_promo_codes
+from crud.promo_code_crud import get_all_promo_codes, promo_code_exists
 from utils.get_db import get_db
 
 router = APIRouter(prefix="/promo_codes", tags=["promo code"])
