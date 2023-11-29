@@ -11,9 +11,6 @@ class Settings(BaseSettings):
 
     SENDER_EMAIL: str
     SENDER_PASSWORD: str
-    RECIPIENT_EMAIL: str
-
-    TOTP_SECRET: str
 
     SECRET_KEY_JWT: str
     ALGORITHM: str
