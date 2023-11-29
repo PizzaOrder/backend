@@ -1,48 +1,53 @@
-from typing import Annotated
-
 import pendulum
 from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordRequestForm
-from jose import jwt
 from sqlalchemy.orm import Session
 
-from core.config import Settings
-from crud.users_crud import get_user_in_db
-from crud.verification_codes_crud import generate_save_and_send_code, get_code
+from auth.security.random_code_gen import generate_secret, generate_totp
+from auth.security.token import create_access_token
+from crud.users_crud import create_user, get_user_in_db
+from crud.verification_codes_crud import (
+    get_code,
+    send_verification_code,
+    store_token_in_db,
+)
 from schemas.users_schema import UserCredentials, UserCredentialsWithCode
 from utils.get_db import get_db
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
 
 
-def create_access_token(data: dict, issued_at):
-    data["iat"] = issued_at
-    expire = issued_at.add(minutes=30).timestamp()
-    data["exp"] = expire
+@router.post("/register/", status_code=200, response_model=None)
+def register(form_data: UserCredentials, db: Session = Depends(get_db)):
+    user = get_user_in_db(form_data.email, db)
+    if user is not None:
+        user_id = user.id
+        code = get_code(user_id, db)
+        send_verification_code(code, form_data.email)
+        return None
 
-    return jwt.encode(data, Settings().SECRET_KEY_JWT, algorithm=Settings().ALGORITHM)
+    secret = generate_secret(64)
+    user = create_user(form_data, db)
+    store_token_in_db(secret, user.id, db)
+
+    code = generate_totp(secret)
+    send_verification_code(code, form_data.email)
+    return None
 
 
-@router.post("/send_verification_code/", status_code=200)
-def send_code(form_data: UserCredentials, db: Session = Depends(get_db)):
-    in_db = get_user_in_db(form_data.email, db)
-    if in_db is None:
+@router.post("/auth/verify_registration/", status_code=200)
+def verify_registration(
+    form_data: UserCredentialsWithCode, db: Session = Depends(get_db)
+):
+    user = get_user_in_db(form_data.email, db)
+    if user is None:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Пользователя с таким email не существует",
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Пользователь не найден",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    generate_save_and_send_code(
-        user_id=in_db.id, recipient_email_param=form_data.email, db=db
-    )
-
-
-@router.post("/verify_code/")
-def verify(form_data: UserCredentialsWithCode, db: Session = Depends(get_db)):
-    user_id = get_user_in_db(UserCredentials.email, db).id
+    user_id = user.id
     code = get_code(user_id, db)
-
-    if code != form_data.verification_code:
+    if form_data.verification_code != code:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Неверный код",
@@ -53,8 +58,3 @@ def verify(form_data: UserCredentialsWithCode, db: Session = Depends(get_db)):
 
     token = create_access_token(data=data, issued_at=pendulum.now())
     return {"access_token": token, "token_type": "bearer"}
-
-
-@router.post("/register/")
-def register(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
-    return

@@ -1,13 +1,13 @@
 from sqlalchemy.orm import Session
 
 from auth.security.email import send_email
-from auth.security.random_code_gen import generate_totp
+from auth.security.random_code_gen import generate_secret, generate_totp
 from core.config import Settings
 from core.models import VerificationCode
 
 
-def create_verification_codes_in_db(code_param: int, user_id_param: int, db: Session):
-    validation_code_model = VerificationCode(code=code_param, user_id=user_id_param)
+def store_token_in_db(secret_param: str, user_id_param: int, db: Session):
+    validation_code_model = VerificationCode(secret=secret_param, user_id=user_id_param)
     db.add(validation_code_model)
     db.commit()
     db.refresh(validation_code_model)
@@ -27,11 +27,13 @@ def send_verification_code(code_param: int, recipient_email: str) -> None:
 
 
 def generate_save_and_send_code(user_id, recipient_email_param, db: Session):
-    totp_code = generate_totp(Settings().TOTP_SECRET)
-    create_verification_codes_in_db(totp_code, user_id, db)
+    secret = generate_secret(64)
+    totp_code = generate_totp(secret)
+    store_token_in_db(totp_code, user_id, db)
     send_verification_code(totp_code, recipient_email_param)
     return totp_code
 
 
 def get_code(user_id_param, db: Session):
-    return db.query(VerificationCode).filter_by(user_id=user_id_param).first()
+    secret = db.query(VerificationCode).filter_by(user_id=user_id_param).first().secret
+    return generate_totp(secret)
