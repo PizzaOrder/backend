@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from auth.security.email import send_email
+from auth.security.email_operations import send_email
 from auth.security.random_code_gen import generate_totp
 from core.config import Settings
 from core.models import VerificationCode
