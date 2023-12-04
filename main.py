@@ -5,6 +5,7 @@ from routers import (
     auth_router,
     cafe_locations_router,
     cities_router,
+    order_router,
     pizza_router,
     promo_code_router,
     users_router,
@@ -17,6 +18,7 @@ app.include_router(promo_code_router.router)
 app.include_router(cafe_locations_router.router)
 app.include_router(users_router.router)
 app.include_router(auth_router.router)
+app.include_router(order_router.router)
 
 
 @app.get("/")
