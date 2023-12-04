@@ -5,9 +5,10 @@ from sqlalchemy.orm import Session
 
 from auth.security.token import decode_access_token
 from crud.users_crud import get_user_in_db
+from schemas.users_schema import UserBase
 
 
-def get_user_by_token(access_token: Annotated[str, Header()], db: Session):
+def get_user_by_token(access_token: Annotated[str, Header()], db: Session) -> UserBase:
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
