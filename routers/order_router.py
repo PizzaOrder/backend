@@ -1,7 +1,7 @@
 from typing import Annotated
 
 import pendulum
-from fastapi import APIRouter, Body, Depends
+from fastapi import APIRouter, Body, Depends, Header
 from sqlalchemy.orm import Session
 
 from core.models import Order
@@ -19,7 +19,7 @@ router = APIRouter(prefix="/order", tags=["order"])
 @router.post("/new/")
 def create_new_order(
     order_items: OrderItemBase | list[OrderItemBase],
-    token: Annotated[str, Body()],
+    token: Annotated[str, Header()],
     promo_code: Annotated[str, Body()] = None,
     db: Session = Depends(get_db),
 ):
