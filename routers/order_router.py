@@ -2,7 +2,6 @@ from typing import Annotated
 
 import pendulum
 from fastapi import APIRouter, Body, Depends
-from icecream import ic
 from sqlalchemy.orm import Session
 
 from core.models import Order
@@ -54,9 +53,6 @@ def create_new_order(
 
     order = OrderInDBBase(**order.__dict__)
 
-    ic(order)
-    ic(order_items)
-
     if isinstance(order_items, list):
         order_items = [
             OrderItemWithOrderId(**x.model_dump(), order_id=order.id)
@@ -68,5 +64,4 @@ def create_new_order(
         )
 
     order_items = create_order_items(order_items, db)
-    ic(order_items)
     return OrderOut(order=order, order_items=order_items)

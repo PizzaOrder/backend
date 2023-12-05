@@ -1,7 +1,6 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, Header, HTTPException, status
-from icecream import ic
 from sqlalchemy.orm import Session
 
 from auth.security.token import decode_access_token
@@ -25,7 +24,6 @@ def get_current_user(
     )
 
     payload = decode_access_token(access_token[1:-1], "5", credentials_exception)
-    ic(payload)
 
     user = get_user_in_db(payload["sub"], db)
     if user is None:
