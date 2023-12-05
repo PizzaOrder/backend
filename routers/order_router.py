@@ -2,7 +2,7 @@ from typing import Annotated
 
 import pendulum
 from fastapi import APIRouter, Body, Depends, Header
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 
 from core.models import Order
 from crud.order_items_crud import create_order_items
@@ -65,3 +65,14 @@ def create_new_order(
 
     order_items = create_order_items(order_items, db)
     return OrderOut(order=order, order_items=order_items)
+
+
+@router.get("/user/")
+def get_user_orders(token: Annotated[str, Header()], db: Session = Depends(get_db)):
+    current_user = get_user_by_token(token, db)
+    return (
+        db.query(Order)
+        .options(selectinload(Order.order_items))
+        .filter_by(user_id=current_user.id)
+        .all()
+    )
