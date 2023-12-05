@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 
 
 class UserCredentials(BaseModel):
@@ -15,10 +15,10 @@ class UserBase(UserCredentials):
     first_name: str | None = None
     last_name: str | None = None
 
-    class Config:
-        from_attributes = True
-
 
 class UserInDBBase(UserBase):
-    id: int
-    created_at: datetime
+    id: int = Field(default=None)
+    created_at: datetime = Field()
+
+    class Config:
+        from_attributes = True
