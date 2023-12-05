@@ -13,4 +13,4 @@ def get_pizza_prices(pizzas_id: list, db: Session) -> float:
 
 
 def get_pizza(pizza_id: int, db: Session) -> float:
-    return db.query(Pizza).filter_by(id=pizza_id).first().price
+    return db.query(Pizza).filter_by(id=pizza_id).first()
