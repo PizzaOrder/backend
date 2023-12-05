@@ -22,3 +22,8 @@ class UserInDBBase(UserBase):
 
     class Config:
         from_attributes = True
+
+
+class ChangeUserProfile(BaseModel):
+    first_name: str | None = None
+    last_name: str | None = None
