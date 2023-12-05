@@ -1,3 +1,5 @@
+from typing import Type
+
 from sqlalchemy.orm import Session
 
 from core.models import Pizza
@@ -12,5 +14,5 @@ def get_pizza_prices(pizzas_id: list, db: Session) -> float:
     return sum(pizza.price for pizza in models)
 
 
-def get_pizza(pizza_id: int, db: Session) -> float:
+def get_pizza(pizza_id: int, db: Session) -> Type[Pizza] | None:
     return db.query(Pizza).filter_by(id=pizza_id).first()
