@@ -26,16 +26,22 @@ def create_new_order(
     current_user = get_user_by_token(token, db)
 
     user_id = current_user.id
-    promo_id = (
-        promo_code_exists(promo_code, db).id
+
+    get_promo = (
+        promo_code_exists(promo_code, db)
         if promo_code_exists(promo_code, db) is not None
         else None
     )
+    promo_id = get_promo.id if get_promo is not None else None
 
     if isinstance(order_items, list):
         total_cost = get_pizza_prices([item.pizza_id for item in order_items], db)
     else:
         total_cost = get_pizza(order_items.pizza_id, db).price
+
+    if promo_id is not None:
+        total_cost *= get_promo.discount_percentage / 100
+
     order_time = pendulum.now()
     status = "Создан"
     order_base = OrderBase(
