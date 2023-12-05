@@ -2,7 +2,6 @@ from pydantic import BaseModel
 
 
 class OrderItemBase(BaseModel):
-    order_id: int
     pizza_id: int
     quantity: int
 
@@ -10,7 +9,11 @@ class OrderItemBase(BaseModel):
         from_attributes = True
 
 
-class OrderItemInDBBase(OrderItemBase):
+class OrderItemWithOrderId(OrderItemBase):
+    order_id: int
+
+
+class OrderItemInDBBase(OrderItemWithOrderId):
     id: int
 
 

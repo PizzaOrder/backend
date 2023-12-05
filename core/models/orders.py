@@ -1,4 +1,5 @@
 from sqlalchemy import Column, DateTime, Float, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
 
 from core.models.base import Base
 
@@ -12,3 +13,5 @@ class Order(Base):
     total_cost = Column(Float)
     order_date = Column(DateTime)
     order_status = Column(String)
+
+    order_items = relationship("OrderItem", back_populates="order")
