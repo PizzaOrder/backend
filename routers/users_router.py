@@ -16,8 +16,7 @@ router = APIRouter(prefix="/user", tags=["users"])
 
 @router.get("/me/")
 def get_current_user(
-        access_token: Annotated[str, Header()] = None,
-        db: Session = Depends(get_db)
+    access_token: Annotated[str, Header()] = None, db: Session = Depends(get_db)
 ):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -25,7 +24,7 @@ def get_current_user(
         headers={"WWW-Authenticate": "Bearer"},
     )
 
-    payload = decode_access_token(access_token[1:-1], '5', credentials_exception)
+    payload = decode_access_token(access_token[1:-1], "5", credentials_exception)
     ic(payload)
 
     user = get_user_in_db(payload["sub"], db)

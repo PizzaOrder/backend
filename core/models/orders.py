@@ -14,4 +14,4 @@ class Order(Base):
     order_date = Column(DateTime)
     order_status = Column(String)
 
-    order_items = relationship('OrderItem', back_populates='order')
+    order_items = relationship("OrderItem", back_populates="order")
