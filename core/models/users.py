@@ -14,6 +14,7 @@ class User(Base):
     email = Column(String)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
+    user_role = relationship("UserRole", back_populates="user")
     verification_code = relationship("VerificationCode", back_populates="user")
 
     @hybrid_property
