@@ -13,5 +13,4 @@ def get_all_promo_codes(db: Session):
 
 
 def get_latest_special_offers(db: Session, limit: int = 3):
-    return db.query(PromoCode).order_by(desc(PromoCode.start_date)).limit(
-        limit).all()
+    return db.query(PromoCode).order_by(desc(PromoCode.start_date)).limit(limit).all()

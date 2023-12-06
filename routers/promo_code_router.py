@@ -15,7 +15,7 @@ router = APIRouter(prefix="/promo_codes", tags=["promo code"])
 
 @router.get("/validate/{promo_code}")
 def validate_promo_code(
-        promo_code: Annotated[str, Path()], db: Session = Depends(get_db)
+    promo_code: Annotated[str, Path()], db: Session = Depends(get_db)
 ):
     return promo_code_exists(promo_code, db)
 
@@ -27,7 +27,6 @@ def get_promo_codes(db: Session = Depends(get_db)):
 
 @router.get("/latest/{limit}")
 def get_latest_promo_codes(
-        limit=Annotated[int, Query(default=3)],
-        db: Session = Depends(get_db)
+    limit=Annotated[int, Query(default=3)], db: Session = Depends(get_db)
 ):
     return get_latest_special_offers(db, limit)
