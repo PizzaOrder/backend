@@ -16,7 +16,7 @@ from utils.get_db import get_db
 router = APIRouter(prefix="/auth", tags=["authentication"])
 
 
-@router.post("/register/", status_code=200, response_model=None)
+@router.post("/login/", status_code=200, response_model=None)
 def register(form_data: UserCredentials, db: Session = Depends(get_db)):
     user = get_user_in_db(form_data.email, db)
     if user is not None:
@@ -34,9 +34,9 @@ def register(form_data: UserCredentials, db: Session = Depends(get_db)):
     return None
 
 
-@router.post("/auth/verify_registration/", status_code=200)
+@router.post("/verify/", status_code=200)
 def verify_registration(
-    form_data: UserCredentialsWithCode, db: Session = Depends(get_db)
+        form_data: UserCredentialsWithCode, db: Session = Depends(get_db)
 ):
     user = get_user_in_db(form_data.email, db)
     if user is None:
