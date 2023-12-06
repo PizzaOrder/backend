@@ -9,3 +9,4 @@ class Pizza(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     price = Column(Float)
+    img_source = Column(String)
