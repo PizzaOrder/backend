@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from routers import (
+    admin_router,
     auth_router,
     cafe_locations_router,
     cities_router,
@@ -20,6 +21,7 @@ app.include_router(cafe_locations_router.router)
 app.include_router(users_router.router)
 app.include_router(auth_router.router)
 app.include_router(order_router.router)
+app.include_router(admin_router.router)
 
 origins = [
     "http://localhost:8000",
