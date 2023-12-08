@@ -12,9 +12,9 @@ router = APIRouter(prefix="/user", tags=["users"])
 
 @router.get("/me/")
 def get_current_user(
-    access_token: Annotated[str, Header()] = None, db: Session = Depends(get_db)
+    token: Annotated[str, Header()], db: Session = Depends(get_db)
 ):
-    return get_user_by_token(access_token, db)
+    return get_user_by_token(token, db)
 
 
 @router.put("/me/")
