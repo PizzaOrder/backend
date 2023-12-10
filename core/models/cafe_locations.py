@@ -12,4 +12,4 @@ class CafeLocation(Base):
     street = Column(String)
     house = Column(String)
 
-    city = relationship("City", back_populates="cafes")
+    city = relationship("City", back_populates="cafes", single_parent=True)
