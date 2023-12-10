@@ -40,7 +40,7 @@ def create_new_order(
         total_cost = get_pizza(order_items.pizza_id, db).price
 
     if promo_id is not None:
-        total_cost *= get_promo.discount_percentage / 100
+        total_cost *= (100 - get_promo.discount_percentage) / 100
 
     order_time = pendulum.now()
     status = "Создан"
