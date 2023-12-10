@@ -10,6 +10,7 @@ from crud.verification_codes_crud import (
     send_verification_code,
     store_token_in_db,
 )
+from schemas.auth_schema import TokenResponse
 from schemas.users_schema import UserCredentials, UserCredentialsWithCode
 from utils.get_db import get_db
 
@@ -34,7 +35,7 @@ def handle_login_or_register(form_data: UserCredentials, db: Session = Depends(g
     return None
 
 
-@router.post("/verify/", status_code=200)
+@router.post("/verify/", status_code=200, response_model=TokenResponse)
 def verify_registration(
     form_data: UserCredentialsWithCode, db: Session = Depends(get_db)
 ):
