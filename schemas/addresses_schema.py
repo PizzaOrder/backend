@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class Address(BaseModel):
+class AddressBase(BaseModel):
     user_id: int
     city: str
     street: str
@@ -13,7 +13,7 @@ class Address(BaseModel):
         from_attributes = True
 
 
-class AddressInDBBase(BaseModel):
+class AddressInDBBase(AddressBase):
     id: int
 
 
