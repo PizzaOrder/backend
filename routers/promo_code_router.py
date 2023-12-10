@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, Path, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Path, status
 from sqlalchemy.orm import Session
 
 from crud.promo_code_crud import (
@@ -8,6 +8,7 @@ from crud.promo_code_crud import (
     get_latest_special_offers,
     promo_code_exists,
 )
+from schemas.promo_codes_schema import PromoCodeModel
 from utils.get_db import get_db
 
 router = APIRouter(prefix="/promo_codes", tags=["promo code"])
@@ -27,13 +28,11 @@ def validate_promo_code(
         )
 
 
-@router.get("")
+@router.get("", response_model=list[PromoCodeModel] | PromoCodeModel)
 def get_promo_codes(db: Session = Depends(get_db)):
     return get_all_promo_codes(db)
 
 
-@router.get("/latest/{limit}")
-def get_latest_promo_codes(
-        limit=Annotated[int, Query(default=3)], db: Session = Depends(get_db)
-):
-    return get_latest_special_offers(db, limit)
+@router.get("/latest", response_model=list[PromoCodeModel] | PromoCodeModel)
+def get_latest_promo_codes(db: Session = Depends(get_db)):
+    return get_latest_special_offers(db, 3)

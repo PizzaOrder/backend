@@ -8,6 +8,7 @@ class PromoCodeBase(BaseModel):
     discount_percentage: int
     start_date: datetime
     end_date: datetime
+    img_source: str
 
     class Config:
         from_attributes = True
