@@ -16,7 +16,7 @@ from utils.get_db import get_db
 router = APIRouter(prefix="/order", tags=["order"])
 
 
-@router.post("/new/")
+@router.post("/new/", response_model=OrderOut)
 def create_new_order(
     order_items: OrderItemBase | list[OrderItemBase],
     token: Annotated[str, Header()],
