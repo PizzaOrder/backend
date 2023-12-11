@@ -16,15 +16,14 @@ router = APIRouter(prefix="/promo_codes", tags=["promo code"])
 
 @router.get("/validate/{promo_code}", response_model=None)
 def validate_promo_code(
-        promo_code: Annotated[str, Path()], db: Session = Depends(get_db)
+    promo_code: Annotated[str, Path()], db: Session = Depends(get_db)
 ):
     promo_code = promo_code.upper()
     if promo_code_exists(promo_code, db):
         return
     else:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Promo code not found"
+            status_code=status.HTTP_404_NOT_FOUND, detail="Promo code not found"
         )
 
 
