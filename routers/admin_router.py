@@ -7,6 +7,7 @@ from crud.order_crud import change_order_status, get_all_orders_for_admin
 from crud.user_role_crud import is_user_admin
 from crud.users_crud import get_user_by_token
 from schemas.order_items_schema import OrderUpdate
+from schemas.orders_schema import OrderInDBBase
 from utils.get_db import get_db
 
 router = APIRouter(prefix="/admin", tags=["admin"])
@@ -23,7 +24,7 @@ def get_all_orders(token: Annotated[str, Header()], db: Session = Depends(get_db
         )
 
 
-@router.put("/order/{order_id}/")
+@router.put("/order/{order_id}/", response_model=OrderInDBBase)
 def update_order(
     order_update: OrderUpdate,
     token: Annotated[str, Header()],
