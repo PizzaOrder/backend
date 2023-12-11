@@ -1,8 +1,9 @@
+from sqlalchemy import Column, ForeignKey, Integer
+
 from core.models.base import Base
-from sqlalchemy import Integer, Column, ForeignKey
 
 
-class UserAddresses(Base):
+class UserAddress(Base):
     __tablename__ = "user_addresses"
 
     id = Column(Integer, primary_key=True)

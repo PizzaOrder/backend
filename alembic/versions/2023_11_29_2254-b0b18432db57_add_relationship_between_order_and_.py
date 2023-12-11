@@ -1,17 +1,15 @@
-"""add user_adreses
+"""add relationship between order and orderitem
 
-Revision ID: 6e19ba729787
-Revises: b9c292239722
-Create Date: 2023-11-14 00:23:12.108095
+Revision ID: b0b18432db57
+Revises: 24e9ddae6e90
+Create Date: 2023-11-29 22:54:26.014398
 
 """
 from typing import Sequence, Union
 
-
-
 # revision identifiers, used by Alembic.
-revision: str = '6e19ba729787'
-down_revision: Union[str, None] = 'b9c292239722'
+revision: str = "b0b18432db57"
+down_revision: Union[str, None] = "24e9ddae6e90"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 

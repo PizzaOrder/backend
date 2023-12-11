@@ -1,19 +1,31 @@
-from pydantic import BaseModel
-from pydantic_extra_types.phone_numbers import PhoneNumber
+from datetime import datetime
+
+from pydantic import BaseModel, EmailStr, Field
 
 
-class UserBase(BaseModel):
-    first_name: str
+class UserCredentials(BaseModel):
+    email: EmailStr
+
+
+class UserCredentialsWithCode(UserCredentials):
+    verification_code: int = Field(
+        gt=99999, lt=1000000, description="Код верификации должен быть шестизначным"
+    )
+
+
+class UserBase(UserCredentials):
+    first_name: str | None = None
     last_name: str | None = None
-    telephone: PhoneNumber
+
+
+class UserInDBBase(UserBase):
+    id: int = Field(default=None)
+    created_at: datetime = Field()
 
     class Config:
         from_attributes = True
 
 
-class UserInDBBase(UserBase):
-    id: int
-
-
-class UserModel(UserInDBBase):
-    pass
+class ChangeUserProfile(BaseModel):
+    first_name: str | None = None
+    last_name: str | None = None

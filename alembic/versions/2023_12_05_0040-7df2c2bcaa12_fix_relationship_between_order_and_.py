@@ -1,17 +1,15 @@
-"""add cities
+"""fix relationship between order and order_items
 
-Revision ID: b9c292239722
-Revises: 0487f0685ff7
-Create Date: 2023-11-14 00:20:18.871941
+Revision ID: 7df2c2bcaa12
+Revises: b0b18432db57
+Create Date: 2023-12-05 00:40:51.213616
 
 """
 from typing import Sequence, Union
 
-
-
 # revision identifiers, used by Alembic.
-revision: str = 'b9c292239722'
-down_revision: Union[str, None] = '0487f0685ff7'
+revision: str = "7df2c2bcaa12"
+down_revision: Union[str, None] = "b0b18432db57"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
