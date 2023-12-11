@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class OrderItemBase(BaseModel):
@@ -26,5 +26,15 @@ class OrderItemModel(OrderItemInDBBase):
 
 
 class OrderUpdate(BaseModel):
-    order_id: int
-    new_status: str
+    order_id: int = Field(default=1, gt=0)
+    new_status: str = Field(default="Готовится")
+
+    @field_validator("new_status")
+    def validate_new_status(cls, value):
+        allowed_statuses = ["Принят", "Готовится", "Готов", "Выдан"]
+        if value not in allowed_statuses:
+            raise ValueError(
+                f"Invalid new_status value."
+                f" Allowed values: {', '.join(allowed_statuses)}"
+            )
+        return value
