@@ -13,7 +13,12 @@ from routers import (
     users_router,
 )
 
-app = FastAPI()
+app = FastAPI(
+    title="PizzaOrder API",
+    description="API для пиццерии - PizzaOrder",
+    version="1.0",
+)
+
 app.include_router(pizza_router.router)
 app.include_router(cities_router.router)
 app.include_router(promo_code_router.router)
