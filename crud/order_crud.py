@@ -4,10 +4,6 @@ from core.models import Order
 from schemas.order_items_schema import OrderUpdate
 
 
-def create_order(schema, user_id: int, db: Session):
-    return ...
-
-
 def get_all_orders_for_admin(db: Session):
     return db.query(Order).options(selectinload(Order.order_items)).all()
 
