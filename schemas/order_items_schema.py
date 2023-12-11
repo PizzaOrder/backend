@@ -23,3 +23,8 @@ class OrderItemInDBBase(OrderItemWithOrderId):
 
 class OrderItemModel(OrderItemInDBBase):
     pass
+
+
+class OrderUpdate(BaseModel):
+    order_id: int
+    new_status: str
