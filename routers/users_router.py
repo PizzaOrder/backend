@@ -24,9 +24,9 @@ def update_user_profile(
     current_user = get_user_by_token(token, db)
 
     if user_profile.first_name is not None:
-        current_user.name = user_profile.first_name
+        current_user.first_name = user_profile.first_name
     if user_profile.last_name is not None:
-        current_user.surname = user_profile.last_name
+        current_user.last_name = user_profile.last_name
 
     db.add(current_user)
     db.commit()
