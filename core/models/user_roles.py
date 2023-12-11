@@ -9,8 +9,6 @@ class UserRole(Base):
 
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), index=True)
-    role = Column(String)
+    role = Column(String, CheckConstraint("role = 'admin'"))
 
     user = relationship("User", back_populates="user_role")
-
-    __table_args__ = (CheckConstraint(role.in_(["user", "admin"]), name="check_role"),)
