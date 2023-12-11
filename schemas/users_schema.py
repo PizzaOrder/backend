@@ -8,7 +8,9 @@ class UserCredentials(BaseModel):
 
 
 class UserCredentialsWithCode(UserCredentials):
-    verification_code: int
+    verification_code: int = Field(
+        gt=99999, lt=1000000, description="Код верификации должен быть шестизначным"
+    )
 
 
 class UserBase(UserCredentials):
