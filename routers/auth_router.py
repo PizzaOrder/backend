@@ -27,10 +27,13 @@ def handle_login_or_register(form_data: UserCredentials, db: Session = Depends(g
         return None
 
     secret = generate_secret(64)
+    code = generate_totp(secret)
+    while not (100000 <= code <= 999999):
+        secret = generate_secret(64)
+        code = generate_totp(secret)
     user = create_user(form_data, db)
     store_token_in_db(secret, user.id, db)
 
-    code = generate_totp(secret)
     send_verification_code(code, form_data.email)
     return None
 
