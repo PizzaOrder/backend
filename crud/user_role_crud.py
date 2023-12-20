@@ -1,4 +1,3 @@
-from icecream import ic
 from sqlalchemy.orm import Session, selectinload
 
 from core.models import User
@@ -11,7 +10,6 @@ def is_user_admin(user_id: int, db: Session) -> bool:
         .options(selectinload(User.user_role))
         .first()
     )
-    ic(user.user_role)
     user_role = user.user_role[0].role == "admin"
 
     return user_role
