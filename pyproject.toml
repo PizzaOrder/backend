@@ -20,7 +20,7 @@ python-jose = { extras = ["cryptography"], version = "^3.3.0" }
 passlib = { extras = ["bcrypt"], version = "^1.7.4" }
 pyotp = "^2.9.0"
 pendulum = "^2.1.2"
-python-multipart = "^0.0.6"
+python-multipart = "^0.0.7"
 
 
 [tool.poetry.group.dev.dependencies]
